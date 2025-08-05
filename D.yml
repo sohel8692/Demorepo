@@ -6,7 +6,7 @@ metadata:
     app: depapp
 spec:
     strategy:
-      type: CanaryUpdate
+      type: RollingUpdate
       rollingUpdate:
             maxSurge: 1     # Maximum number of pods that can be created over the desired replicas
             maxUnavailable: 1  # Maximum number of pods that can be unavailable during the update
@@ -16,7 +16,7 @@ spec:
          #   -  { key: app, operator: Exists}
       matchLabels: 
           app: depapp
-    replicas: 12
+    replicas: 10
     template:
       metadata:
         labels:
@@ -25,8 +25,8 @@ spec:
       spec:
         containers:
           - name: nginxapp
-            image: nginx:latest 
+            image: ngnix:latest 
             ports:
                 - containerPort: 80
-                   protocol: TCP
+                 protocol: TCP
                   
